@@ -61,3 +61,15 @@ leerLibro usuario libro = (genero libro . agregarLibro libro) usuario
 
 agregarLibro :: Libro -> Usuario -> Usuario
 agregarLibro libro usuario = usuario {librosLeidos = libro:librosLeidos usuario}
+
+ponerseAlDia :: Usuario -> Usuario
+ponerseAlDia usuario = foldl leerLibro usuario (librosQueNoLeyo usuario)
+
+libroLeido :: Usuario -> Libro -> Bool -- Determina si un libro fue leido
+libroLeido usuario libro = any (esElMismo libro) (librosLeidos usuario)
+
+esElMismo :: Libro -> Libro -> Bool
+esElMismo libro otroLibro = (titulo libro == titulo otroLibro) && (autor libro == autor otroLibro)
+
+librosQueNoLeyo :: Usuario -> [Libro]
+librosQueNoLeyo usuario = filter (not . libroLeido usuario) (librosAdquiridos usuario)
