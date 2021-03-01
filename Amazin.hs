@@ -73,3 +73,9 @@ esElMismo libro otroLibro = (titulo libro == titulo otroLibro) && (autor libro =
 
 librosQueNoLeyo :: Usuario -> [Libro]
 librosQueNoLeyo usuario = filter (not . libroLeido usuario) (librosAdquiridos usuario)
+
+esFanaticoDe :: Usuario -> String -> Bool
+esFanaticoDe usuario unAutor = all (fueEscritoPor unAutor) (librosLeidos usuario)
+
+fueEscritoPor :: String -> Libro -> Bool
+fueEscritoPor unAutor libro = autor libro == unAutor
