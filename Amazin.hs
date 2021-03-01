@@ -38,3 +38,20 @@ cienAnios = Libro {
     paginas = 600,
     genero = comediaDramatica
 }
+
+comediaDramatica, comediaAbsurda, comediaSatirica, otraComedia, cienciaFiccion, terror :: Genero
+
+comediaDramatica usuario = usuario
+
+comediaAbsurda usuario = aumentarFelicidad usuario 5
+
+comediaSatirica usuario = usuario {indiceFelicidad = 2 * indiceFelicidad usuario}
+
+otraComedia usuario = aumentarFelicidad usuario 10
+
+aumentarFelicidad :: Usuario -> Float -> Usuario
+aumentarFelicidad usuario cantidad = usuario {indiceFelicidad = cantidad + indiceFelicidad usuario}
+
+cienciaFiccion usuario = usuario {nickname = reverse (nickname usuario)}
+
+terror usuario = usuario {librosAdquiridos = []}
