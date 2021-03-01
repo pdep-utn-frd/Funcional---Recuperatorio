@@ -55,3 +55,9 @@ aumentarFelicidad usuario cantidad = usuario {indiceFelicidad = cantidad + indic
 cienciaFiccion usuario = usuario {nickname = reverse (nickname usuario)}
 
 terror usuario = usuario {librosAdquiridos = []}
+
+leerLibro :: Usuario -> Libro -> Usuario
+leerLibro usuario libro = (genero libro . agregarLibro libro) usuario
+
+agregarLibro :: Libro -> Usuario -> Usuario
+agregarLibro libro usuario = usuario {librosLeidos = libro:librosLeidos usuario}
