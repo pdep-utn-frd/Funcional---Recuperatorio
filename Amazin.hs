@@ -94,3 +94,9 @@ novela libro = paginas libro > 200
 
 librosDelTipo :: Tipo -> Usuario -> [Libro]
 librosDelTipo unTipo usuario = filter unTipo (librosAdquiridos usuario)
+
+-- Pregunta teorica:
+
+-- En este caso, no podria ponerse al dia el usuario ya que para realizar esto, lee los libros adquiridos que no haya leido antes. 
+-- Si la cantidad de libros adquiridos es infinita, la cantidad de libros que no leyo, es infinita tambien. Se deberia aplicar otra funcion que limite la cantidad
+-- de libros adquiridos a leer, por ejemplo la funcion "take". De esta forma, podria ejecutarse la funcion "ponerseAlDia", aunque la cantidad de libros adquirida sea infinita.
