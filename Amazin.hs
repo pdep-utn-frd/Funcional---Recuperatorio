@@ -91,3 +91,6 @@ cuento libro = paginas libro < 100
 novelaCorta libro = (paginas libro >= 100) && (paginas libro <= 200)
 
 novela libro = paginas libro > 200
+
+librosDelTipo :: Tipo -> Usuario -> [Libro]
+librosDelTipo unTipo usuario = filter unTipo (librosAdquiridos usuario)
