@@ -11,16 +11,18 @@ data Libro = Libro {
     titulo :: String,
     autor :: String,
     paginas :: Int,
-    genero :: Genero
+    genero :: Genero,
+    tipo :: Tipo
 } deriving (Show)
 
 type Genero = Usuario -> Usuario
+type Tipo = Libro -> Bool
 
 micaela :: Usuario
 micaela = Usuario {
     nickname = "micaelap",
     indiceFelicidad = 70,
-    librosAdquiridos = [elResplandor, cienAnios],
+    librosAdquiridos = [cienAnios],
     librosLeidos = [cienAnios]
 }
 
@@ -28,15 +30,17 @@ elResplandor, cienAnios :: Libro
 elResplandor = Libro {
     titulo = "El Resplandor",
     autor = "Stephen King",
-    paginas = 500,
-    genero = terror
+    paginas = 150,
+    genero = terror,
+    tipo = novelaCorta
 }
 
 cienAnios = Libro {
     titulo = "Cien Anios de Soledad",
     autor = "Garcia Marquez",
     paginas = 600,
-    genero = comediaDramatica
+    genero = comediaDramatica,
+    tipo = novela
 }
 
 comediaDramatica, comediaAbsurda, comediaSatirica, otraComedia, cienciaFiccion, terror :: Genero
@@ -79,3 +83,11 @@ esFanaticoDe usuario unAutor = all (fueEscritoPor unAutor) (librosLeidos usuario
 
 fueEscritoPor :: String -> Libro -> Bool
 fueEscritoPor unAutor libro = autor libro == unAutor
+
+cuento, novelaCorta, novela :: Tipo
+
+cuento libro = paginas libro < 100
+
+novelaCorta libro = (paginas libro >= 100) && (paginas libro <= 200)
+
+novela libro = paginas libro > 200
